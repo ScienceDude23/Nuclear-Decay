@@ -16,7 +16,7 @@ bss = np.std(base)
 print(bsm,bss)
 
 plt.figure(figsize=(10, 6))
-plt.hist(base, label='Base', color='blue')
+plt.hist(base, alpha=0.7, label='Base', color='blue')
 plt.xlabel('Number of decay events')
 plt.ylabel('Number of occurrences')
 plt.title('Baseline Radiation Level')
@@ -28,7 +28,7 @@ css = np.std(caesium)
 print(csm,css)
 
 plt.figure(figsize=(10, 6))
-plt.hist(caesium, label='Caesium-137', color='green')
+plt.hist(caesium, alpha=0.7, label='Caesium-137', color='green')
 plt.xlabel('Number of decay events')
 plt.ylabel('Number of occurrences')
 plt.title('Caesium-137 Decay')
@@ -47,9 +47,11 @@ thalf = np.log(2)/dp
 dhalf = (np.log(2)/dp**2)*delp
 print(thalf, dhalf)
 
+trand = np.linspace(0, np.max(btime), 1000)
+
 plt.figure(figsize=(10, 6))
 plt.scatter(btime, barium, label='Barium-137', color='red')
-plt.plot(btime, decay(btime, *popt), label='Fitted Curve', color='black')
+plt.plot(trand, decay(trand, *popt), label='Fitted Curve', color='black')
 plt.xlabel('Time (s)')
 plt.ylabel('Decay events')
 plt.title('Barium-137 Decay')
